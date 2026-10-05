@@ -52,6 +52,21 @@ If the server returns an error, `ndcli` prints the error to stderr and exits wit
 3. Ask the user before `ndcli rm`. Ask the user before a `put` that removes content from a note.
 4. Warn the user that the web editor saves automatically each second. A note that is open in a browser can overwrite an edit from `ndcli`. Tell the user to close the note in the browser before a `put`.
 
+## Tags
+
+The server reads tags from the YAML frontmatter only. It does not read an inline `#tag`. Use lowercase and no spaces.
+
+```markdown
+---
+tags: [cooking, cast-iron]
+---
+```
+
+1. If a set of notes has a router and references layout, tag the router note `summary`. Tag each reference note `reference`. The router note is the index note that links to the reference notes.
+2. For all other notes, use tags that describe the subject of the note. Run `ndcli tags` first. Use an existing tag if one fits. Use 1 to 5 tags.
+3. Do not add a tag that says nothing about the note, for example `shared`.
+4. To change the tags of a note, run `ndcli get`, change only the `tags:` line, then run `ndcli put`.
+
 ## Not supported
 
 `ndcli` does not support media, sharing, templates, themes, plugins, HTML export or ZIP archive. Use the web interface for these.
